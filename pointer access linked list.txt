@@ -1,0 +1,29 @@
+#include<iostream>
+class Student{
+    public:
+    std::string name;
+    int rno;
+    float per;
+    Student(std::string n,int r,float p){
+        this->name=n;
+        this->rno=r;
+        this->per=p;
+    }
+};
+void change(Student *s){
+   s->name="Harsh";
+}
+int main(){
+    Student *s =new Student("Raghav",89,93.0); // dynamically value dena pointer bana ke
+    
+    std::cout<<s->name<<std::endl;
+    change(s);
+    std::cout<<s->name<<std::endl;
+    // Student *ptr=&s;
+    // (*ptr).name="Harsh";
+    // //ptr->name="Sanket"; pointer se change kar sakte 
+    // std::cout<<s.name<<" "<<s.rno;
+    
+    
+    
+}

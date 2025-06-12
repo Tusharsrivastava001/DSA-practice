@@ -1,0 +1,38 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+void display(std::queue<int> &q){
+    int n=q.size();
+    for(int i=1;i<=n;i++){
+        int x=q.front();
+        std::cout<<x<<" ";
+        q.pop();
+        q.push(x);
+    }
+}
+void rev(std::queue<int> &q){
+    int n=q.size();
+    std::stack<int> s1;
+    for(int i=1;i<=n;i++){
+        int x=q.front();
+        s1.push(x);
+        q.pop();
+    }
+    while(s1.size()>0){
+        q.push(s1.top());
+        s1.pop();
+    }
+}
+int main(){
+    std::queue<int> q1;
+    q1.push(10);
+    q1.push(20);
+    q1.push(30);
+    q1.push(40);
+    q1.push(50);
+    display(q1);
+    rev(q1);
+    std::cout<<std::endl;
+    display(q1);
+    
+}

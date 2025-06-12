@@ -1,0 +1,47 @@
+#include<iostream>
+#include<stack>
+int main(){
+    std::stack<int> st;
+    std::stack<int> temp;
+    std::stack<int> mr;
+    std::cout<<st.size()<<std::endl;
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+    std::cout<<st.size()<<std::endl;
+    std::cout<<st.top()<<std::endl;
+    
+    //first stack 
+    while(st.size()>0){
+        std::cout<<st.top()<<" ";
+        int x=st.top();
+        st.pop();
+        temp.push(x);
+    }
+    std::cout<<std::endl;
+    std::cout<<st.size()<<std::endl;
+    //this is the duplicate stack which store the reverse of linked
+    while(temp.size()>0){
+        std::cout<<temp.top()<<" ";
+        int x=temp.top();
+        temp.pop();
+        mr.push(x);
+    }
+    std::cout<<std::endl;
+    std::cout<<temp.size()<<std::endl;
+    while(mr.size()>0){
+        std::cout<<mr.top()<<" ";
+        int x=mr.top();
+        mr.pop();
+        st.push(x);
+    }
+    std::cout<<std::endl;
+    std::cout<<mr.size()<<std::endl;
+    while(st.size()>0){
+        std::cout<<st.top()<<" ";
+        st.pop();
+    }
+    
+    
+}

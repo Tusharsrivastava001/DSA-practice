@@ -1,0 +1,27 @@
+#include<iostream>
+void insert(int arr[],int &k,int val){
+    arr[k]=val;
+    int i=k;
+    k++;
+    while(i>0 && arr[(i-1)/2]<arr[i]){
+        std::swap(arr[(i-1)/2],arr[i]);
+        i=(i-1)/2;
+    }
+}
+void print(int arr[],int n){
+    for(int i=0;i<n;i++){
+        std::cout<<arr[i]<<" ";
+    }
+}
+int main(){
+    int arr[100];
+    int k=0;
+    int n;
+    std::cin>>n;
+    for(int i=0;i<n;i++){
+        int val;
+        std::cin>>val;
+        insert(arr,k,val);
+    }
+    print(arr,n);
+}

@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+//array implentaion of stack
+class Stack{
+    public:
+    std::vector<int> v;
+    Stack(){
+       
+    }
+    void push(int val){
+        v.push_back(val);
+    }
+    void pop(){
+        if(v.size()==0){
+            std::cout<<"Stack is empty"<<std::endl;
+            return;
+        }
+        v.pop_back();
+    }
+    int top(){
+        if(v.size()==0){
+            std::cout<<"Stacks is empty";
+        }
+        return v[v.size()-1];
+    }
+    int size(){
+        return v.size();
+    }
+};
+int main(){
+    
+    Stack s1;
+    s1.pop();
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(40);
+    s1.push(50);
+    s1.push(60);
+    std::cout<<s1.size()<<std::endl;
+     std::cout<<s1.top()<<std::endl;
+    
+
+    
+    
+}

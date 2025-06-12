@@ -1,0 +1,140 @@
+#include<iostream>
+class Node{
+    public:
+    int val;
+    Node*next;
+    Node*prev;
+    Node(int val){
+        this->val=val;
+        this->next=NULL;
+        this->prev=NULL;
+    }
+};
+class DLL{
+    public:
+    Node*head;
+    Node*tail;
+    int size;
+    DLL(){
+        size=0;
+        head=tail=NULL;
+    }
+    void insertathead(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            head->prev=temp;
+            temp->next=head;
+            head=temp;
+        }
+        size++;
+    }
+    void insertatend(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            tail->next=temp;
+            temp->prev=tail;
+            tail=temp;
+        }
+        size++;
+    }
+    void insertatidx(int val,int idx){
+        if(idx<0 && idx>size) std::cout<<"invalid index";
+        else if(idx==0)insertathead(val);
+        else if(idx==size) insertatend(val);
+        else{
+            Node*t=new Node(val);
+            Node*temp=head;
+            for(int i=1;i<idx;i++){
+                temp=temp->next;
+            }
+            t->next=temp->next;
+            temp->next=t;
+            t->prev=temp;
+            t->next->prev=t;
+        }
+        size++;
+    }
+    void deleteathead(){
+        if(size==0) std::cout<<"List is empty";
+        else {
+            head=head->next;
+            if(head!=NULL) head->prev=NULL;
+            if(head==NULL) tail=NULL;
+        }
+        size--;
+    }
+    void deleteattail(){
+        if(size==0) std::cout<<"List is empty";
+        else if(size==1){ 
+            deleteathead();
+            return;
+        }
+        Node*temp=tail->prev;
+        temp->next=NULL;
+        tail=temp;
+        size--;
+    }
+    void deleteatidx(int idx){
+        if(size==0) std::cout<<"List is empty";
+        else if(idx<0 && idx>size) std::cout<<"Invalid index";
+        else if(idx==0) return deleteathead();
+        else if(idx==size-1) return deleteattail();
+        else{
+            Node*temp=head;
+            for(int i=1;i<idx;i++){
+                temp=temp->next;
+            }
+            temp->next=temp->next->next;
+            temp->next->prev=temp;
+            size--;
+        }
+    }
+    int getbyidx(int idx){
+        if(idx<0 && idx>size) std::cout<<"invalid idx";
+        else if(idx==0) return head->val;
+        else if(idx==size-1) return tail->val;
+        else{
+            Node*temp=head;
+            for(int i=1;i<idx;i++){
+                temp=temp->next;
+            }
+            return temp->val;
+        }
+        return -1;
+        }
+    void display(){
+        Node*temp=head;
+        while(temp!=NULL){
+            std::cout<<temp->val<<" ";
+            temp=temp->next;
+        }
+        std::cout<<std::endl;
+    }
+};
+int main(){
+    DLL ll;
+    ll.insertatend(10);
+    ll.insertatend(20);
+    ll.insertatend(30);
+    ll.insertatend(40);
+    ll.display();
+    ll.insertathead(50);
+    ll.insertathead(78);
+    ll.display();
+    ll.insertatidx(23,1);
+    ll.display();
+    ll.deleteathead();
+    ll.display();
+    ll.deleteattail();
+    ll.display();
+    ll.deleteatidx(2);
+    ll.display();
+    std::cout<<ll.getbyidx(3);
+    
+    
+    
+
+    
+}

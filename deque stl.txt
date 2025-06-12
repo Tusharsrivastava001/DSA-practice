@@ -1,0 +1,33 @@
+a. Approach for Exchanging Messages of Arbitrary Size
+To enable the exchange of messages larger than the maximum PDU size (M bytes), the following approach can be implemented:
+
+Message Fragmentation:
+
+Divide the original message into smaller segments, each fitting within the PDU size limit (M bytes).
+Each segment will be encapsulated in a PDU, ensuring that the header (H bytes) is accounted for in the total size.
+Sequence Numbering:
+
+Assign a unique sequence number to each fragment of the message. This allows the receiving peer to reassemble the message in the correct order.
+Acknowledgment Mechanism:
+
+Implement an acknowledgment (ACK) system where the receiver sends back an acknowledgment for each received fragment. This ensures reliability and allows for retransmission of lost fragments.
+End-of-Message Indicator:
+
+Include a special flag or indicator in the last fragment to signal the end of the message. This helps the receiver know when it has received the complete message.
+b. Essential Control Information to be Exchanged
+The following control information is essential for the peer processes to manage the message exchange:
+
+Message Identifier: A unique identifier for each message to distinguish it from others.
+Fragment Sequence Number: To maintain the order of fragments.
+Total Number of Fragments: Indicates how many fragments make up the complete message.
+Acknowledgment Information: To confirm receipt of fragments.
+Error Detection Code: Such as a checksum to ensure data integrity
+
+
+c. Additional Control Information for Multiple Source-Destination Pairs
+When the message transfer service is shared by several message source-destination pairs, additional control information is required:
+
+Source and Destination Identifiers: To identify the sender and receiver of each message. This can be included in the header of each PDU.
+Session Identifier: If multiple sessions are active, a session ID can help distinguish between different message exchanges.
+Priority Information: If certain messages need to be prioritized over others, this information can be included in the control data.
+This additional control information should be placed i

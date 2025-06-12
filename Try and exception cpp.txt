@@ -1,0 +1,26 @@
+#include<iostream>
+//write a programm to input a number. If number is even then raise an exceptio and calcute the factorial of that number in the catch block If number is odd then raise an exception and print table of that number
+int main(){
+    int n;
+    std::cin>>n;
+    try{ //block
+        if(n%2==0){
+            throw 1;
+        }
+        else if(n%2!=0){
+            throw 1.2f;
+        }
+    }
+    catch(int x){ //catch is keywords
+        int fact=1;
+        for(int i=1;i<=n;i++){
+            fact*=i;
+        }
+        std::cout<<"Factorial is: "<<fact<<std::endl;
+    }
+    catch(float x){
+        for(int i=1;i<=10;i++){
+            std::cout<<n<<"*"<<i<<"="<<n*i<<std::endl;
+        }
+    }
+}
