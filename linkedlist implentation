@@ -1,0 +1,68 @@
+#include<iostream>
+#include<vector>
+//array implentaion of stack
+class Node{
+    public:
+    int val;
+    Node*next;
+    Node(int val){
+        this->val=val;
+        this->next=NULL;
+    }
+};
+class stack{
+    public:
+    Node*head;
+    int size;
+    stack(){
+        head=0;
+        size=0;
+    }
+    void push(int val){
+        Node*temp=new Node(val);
+        temp->next=head;
+        head=temp;
+        size++;
+    }
+    void print(){
+        Node*temp=head;
+        while(temp!=NULL){
+            std::cout<<temp->val<<" ";
+            temp=temp->next;
+        }
+    }
+    void pop(){
+        if(head==0) {
+            std::cout<<"Stack is empty";
+            return;
+        }
+        head=head->next;
+        size--;
+        
+    }
+    int top(){
+        if(head==NULL){
+            std::cout<<"Stack is empty no elemts"<<std::endl;
+            return -1;
+        }
+        return head->val;
+    }
+    
+};
+int main(){
+    
+    stack s1;
+    s1.top();
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(40);
+    s1.push(50);
+    s1.push(60);
+    s1.print();
+    std::cout<<s1.top()<<" ";
+    
+
+    
+    
+}
