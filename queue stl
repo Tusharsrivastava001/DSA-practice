@@ -1,0 +1,33 @@
+#include<iostream>
+#include<queue>
+void print(std::queue<int> &q){
+    
+    for(int i=0;i<q.size();i++){
+        int x=q.front();
+        std::cout<<q.front()<<" ";
+        q.pop();
+        q.push(x);
+    }
+    // while(q.size()>0){
+    //     if(q.size()==1) return;
+    //     std::cout<<q.front()<<" ";
+    //     q.pop();
+    // }
+}
+int main(){
+   std::queue<int> q;
+   q.push(10);
+   // push pop back fronto or top size bhi hota hai 
+   q.push(20);
+   q.push(30);
+   q.push(40);
+   q.push(50);
+   q.push(60);
+   std::cout<<q.front()<<" ";
+   q.pop(); // front me hota hai 
+   std::cout<<q.front()<<" ";
+   std::cout<<q.back();
+   std::cout<<std::endl;
+   print(q);
+  
+}
