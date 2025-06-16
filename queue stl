@@ -14,6 +14,17 @@ void print(std::queue<int> &q){
     //     q.pop();
     // }
 }
+
+void removeateven(std::queue<int> &q){
+    int n = q.size();
+    for(int i = 0; i < n; i++) {
+        int x = q.front();
+        q.pop();
+        if (i % 2 != 0) {
+            q.push(x);
+        }
+    }
+}    
 int main(){
    std::queue<int> q;
    q.push(10);
