@@ -1,0 +1,64 @@
+#include<iostream>
+class Node{
+    public:
+    int val;
+    Node*next;
+    Node*prev;
+    Node(int val){
+        this->val=val;
+        this->next=NULL;
+        this->prev=NULL;
+    }
+};
+class deque{
+    public:
+    int size;
+    Node*head;
+    Node*tail;
+    deque(){
+        head=tail=NULL;
+        size=0;
+    }
+
+    void insertatend(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            tail->next=temp;
+            temp->prev=tail;
+            tail=temp;
+        }
+        size++;
+    }
+    void insertathead(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            temp->next=head;
+            head->prev=temp;
+            head=temp;
+        }
+        size++;
+    }
+    void display(){
+        Node*temp=head;
+        while(temp!=NULL){
+            std::cout<<temp->val<<" ";
+            temp=temp->next;
+        }
+    }
+};
+int main(){
+    deque q;
+    q.insertatend(10);
+    q.insertatend(20);
+    q.insertatend(30);
+    q.insertatend(40);
+    q.insertatend(50);
+    q.display();
+    q.insertathead(99);
+    std::cout<<std::endl;
+    
+    q.display();
+    
+}
