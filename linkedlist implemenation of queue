@@ -1,0 +1,56 @@
+#include<iostream>
+class Node{
+    public:
+    int val;
+    Node*next;
+    Node(int val){
+        this->val=val;
+        this->next=NULL;
+    }
+};
+class queue{
+    public:
+    Node*head;
+    Node*tail;
+    int size;
+    queue(){
+        head=tail=NULL;
+        size=0;
+    }
+    void push(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            tail->next=temp;
+            tail=temp;
+            
+        }
+        size++;
+    }
+    void pop(){
+        if(size==0){
+            std::cout<<"Queue is Empty"<<std::endl;
+            return;
+        }
+        head=head->next;
+        size--;
+    }
+    void display(){
+        Node*temp=head;
+        while(temp!=NULL){
+            std::cout<<temp->val<<" ";
+            temp=temp->next;
+        }
+    }
+};
+int main(){
+    queue q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    q.push(40);
+    q.push(50);
+    q.push(60);
+    q.pop();
+    q.display();
+}
