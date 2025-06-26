@@ -1,0 +1,8 @@
+void display(Node*root,int level){
+    if(root==NULL) return ;
+    if(level==3){
+    std::cout<<root->val<<" ";
+    }
+    display(root->left,level+1);
+    display(root->right,level+1);
+}
