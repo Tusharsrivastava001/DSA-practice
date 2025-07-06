@@ -14,9 +14,12 @@ int main(){
     for(int x : s){//using of the for each without index
         std::cout<<x<<" "; 
     }
-    int tar=78;
+    int tar=785;
     if(s.find(tar)!=s.end()){ 
-        
+        std::cout<<"exits";
+    }
+    else{
+        std::cout<<"not exits";
     }
     //exits or not 
 
