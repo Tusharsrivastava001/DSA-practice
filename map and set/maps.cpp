@@ -19,9 +19,16 @@ int main() {
     m.insert(p2);
     m.insert(p3);
     
-    
-    for(std::pair ele : m){
+     
+    for(auto ele : m){
         std::cout<<ele.first<<"  "<<ele.second<<std::endl;
     }
+    std::cout<<m.size()<<std::endl;
+    m.erase("john");
+    for(auto ele : m){
+        std::cout<<ele.first<<"  "<<ele.second<<std::endl;
+    }
+    std::cout<<m.size()<<std::endl;
+    return 0;
     return 0;
 }
