@@ -1,0 +1,24 @@
+#include<iostream>
+
+#include<queue>
+int main(){
+    std::priority_queue<int,std::vector<int>,std::greater<int>> pq;
+   int arr[]={10,20,-4,6,18,2,105,118};
+   int k=4;
+   std::vector<int> v;
+   int n=sizeof(arr)/sizeof(arr[0]);
+   for(int i=0;i<n;i++){
+       pq.push(arr[i]);
+       if(pq.size()>k){
+         v.push_back(pq.top());
+         pq.pop();
+       }
+   }
+   while(pq.size()>0){
+        v.push_back(pq.top());
+         pq.pop();
+   }
+  for(int ele : v){
+      std::cout<<ele<<" ";
+  }
+}
