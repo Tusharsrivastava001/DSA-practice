@@ -1,0 +1,75 @@
+#include<iostream>
+class MAXHEAP{
+    public:
+    int*arr;
+    int size;
+    int total_size;
+    MAXHEAP(int n){
+        arr=new int[n];
+        size=0;
+        total_size=n;
+    }
+    void insert(int val){
+        if(size==total_size){
+            std::cout<<"Heap is full";
+        }
+        else{
+            arr[size]=val;
+            int index=size;
+            size++;
+            while(index>0 && arr[(index-1)/2]<arr[index]){
+                std::swap(arr[(index-1)/2],arr[index]);
+                index=(index-1)/2;
+            }
+            std::cout<<arr[index]<<" Element is inserted"<<std::endl;
+        }
+    }
+    void heapify(int i){ // currect postion pe lane ke liye kiya hai
+        int largest=i;
+        int left=2*i+1;
+        int right=2*i+2;
+        if(left<size && arr[left]>arr[largest]){
+            largest=left;
+        }
+        if(right<size && arr[right]>arr[largest]){
+            largest=right;
+        }
+        if(largest!=i){
+            std::swap(arr[largest],arr[i]);
+            heapify(largest); //index pass karnkare aih 
+        }
+    }
+    void display(){
+        for(int i=0;i<size;i++){
+            std::cout<<arr[i]<<" ";
+        }
+        std::cout<<std::endl;
+    }
+    void del(){
+        if(size==0){
+            std::cout<<"Under flow";
+            return ;
+        }
+        else{
+            std::cout<<arr[0]<<" element delete from the heap \n";
+            arr[0]=arr[size-1];
+            size--;
+            if(size==0) return;
+            heapify(0); // correct positon pe laegega
+            
+        }
+    }
+};
+int main(){
+    MAXHEAP H1(6);
+    H1.insert(4);
+    H1.insert(14);
+    H1.insert(11);
+    H1.del();
+    H1.display();
+    H1.insert(113);
+    // H1.insert(114);
+    // H1.insert(115);
+    // H1.insert(1);
+    
+}

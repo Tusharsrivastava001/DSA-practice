@@ -1,0 +1,121 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+class Node{
+    public:
+    int val;
+    Node*prev;
+    Node*next;
+    Node(int val){
+        this->val=val;
+        this->next=NULL;
+        this->prev=NULL;
+    }
+};
+class DLL{
+    public:
+    Node*head;
+    Node*tail;
+    int size;
+    DLL(){
+        head=tail=NULL;
+        size=0;
+    }
+    void insertatend(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            tail->next=temp;
+            temp->prev=tail;
+            tail=temp;
+        }
+        size++;
+    }
+    void insertathead(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            temp->next=head;
+            head->prev=temp;
+            head=temp;
+        }
+        size++;
+    }
+    void insertatidx(int val,int idx){
+        if(idx>size || idx<0 ) std::cout<<"Invalid index";
+        else if(size==0) insertathead(val);
+        else if(size==idx) insertatend(val);
+        else{
+            Node*temp=head;
+            Node*t=new Node(val);
+            for(int i=1;i<idx-1;i++){
+                temp=temp->next;
+            }
+            t->next=temp->next;
+
+            temp->next=t;
+             t->prev=temp;
+            t->next->prev=t;
+            size++;
+            
+        }
+        
+        
+    }
+    void deleteathead(){
+        if(size==0) std::cout<<"List is empty";
+        else{
+            head=head->next;
+            if(head!=NULL) head->prev=NULL;
+            if(head==NULL) tail=NULL; //IMP extra
+            size--;
+        }
+        
+    }
+    void deleteatidx(int idx){
+        if(idx<0 || idx>size) std::cout<<"Invalid index";
+        else if(idx==0) deleteathead();
+        else if(idx==size-1) deleteattail();
+        else{
+            Node*temp=head;
+            for(int i=1;i<=idx-1;i++){
+                temp=temp->next;
+            }
+            temp->next=temp->next->next;
+            temp->next->prev=temp;
+            size--;
+        }
+    }
+    void deleteattail(){
+        if(size==0) std::cout<<"List is empty";
+        else{
+            Node*temp=tail->prev;
+            temp->next=NULL;
+            tail=temp;
+            size--;
+        }
+    }
+    void display(){
+        Node*temp=tail;
+        while(temp){
+            std::cout<<temp->val<<" ";
+            temp=temp->prev;
+        }
+    }
+};
+int main() {
+   DLL ll;
+   ll.insertatend(10);
+   ll.insertatend(20);
+   ll.insertatend(30);
+   ll.insertatend(40);
+   ll.insertatend(50);
+   ll.insertathead(44);
+   ll.insertatidx(105,2);
+   
+   ll.deleteathead();
+   ll.deleteattail();
+     ll.display();
+    std::cout<<std::endl;
+   ll.deleteatidx(2);
+   ll.display();
+}

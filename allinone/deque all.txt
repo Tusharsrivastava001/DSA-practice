@@ -1,0 +1,123 @@
+#include<iostream>
+class Node{
+    public:
+    int val;
+    Node*next;
+    Node*prev;
+    Node(int val){
+        this->val=val;
+        this->next=NULL;
+        this->prev=NULL;
+    }
+};
+class Deque{
+    public:
+    Node*head;
+    Node*tail;
+    int size;
+    Deque(){
+        size=0;
+        head=tail=NULL;
+    }
+    void pushfront(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            head->prev=temp;
+            temp->next=head;
+            head=temp;
+        }
+        size++;
+    }
+    void pushback(int val){
+        Node*temp=new Node(val);
+        if(size==0) head=tail=temp;
+        else{
+            tail->next=temp;
+            temp->prev=tail;
+            tail=temp;
+        }
+        size++;
+    }
+    void popfront(){
+        if(size==0) std::cout<<"List is empty";
+        else {
+            head=head->next;
+            if(head!=NULL) head->prev=NULL;
+            if(head==NULL) tail=NULL;
+        }
+        size--;
+    }
+    void popback(){
+        if(size==0) std::cout<<"List is empty";
+        else if(size==1){ 
+            popfront();
+            return;
+        }
+        Node*temp=tail->prev;
+        temp->next=NULL;
+        tail=temp;
+        size--;
+    }
+    void display(){
+        Node*temp=head;
+        while(temp!=NULL){
+            std::cout<<temp->val<<" ";
+            temp=temp->next;
+        }
+        std::cout<<std::endl;
+    }
+    int front(){
+        if(size==0) {
+            std::cout<<"Queue is empty";
+            return -1;
+        }
+        else{
+            return head->val;
+        }
+    }
+    int back(){
+        if(size==0) {
+            std::cout<<"Queue is empty";
+            return -1;
+        }
+        else{
+            return tail->val;
+        }
+    }
+     int getsize(){
+        return size;
+        }
+    bool empty(){
+        if(size==0) return true;
+        else return false;
+    }
+};
+int main(){
+    Deque d1;
+    d1.pushback(10);
+    d1.pushback(20);
+    d1.pushback(30);
+    d1.pushback(40);
+    d1.pushback(50);
+    d1.display();
+    d1.popback();
+    d1.display();
+    d1.popfront();
+    d1.display();
+    d1.pushfront(70);
+    d1.display();
+    std::cout<<d1.front()<<" "<<d1.back();
+    
+    
+    
+    
+    
+
+    
+}    
+    
+    
+
+    
+}
