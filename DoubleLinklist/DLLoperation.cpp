@@ -45,7 +45,29 @@ class DLL{
             temp=temp->next;
         }
     }
-    
+     void insertatpos(int val,int pos){
+        if(pos==0){
+            insertathead(val);
+            return;
+        }
+        if(pos==size){
+            insertatend(val);
+            return;
+        }
+        Node*newNode=new Node(val);
+        Node*curr=head;
+        for(int i=0;i<pos-2;i++){
+            curr=curr->next;
+        }
+        newNode->next=curr->next;
+        newNode->prev=curr;
+        
+        if(curr->next!=nullptr){
+            curr->next->prev=newNode;
+        }
+        curr->next=newNode;
+        size++;
+    }
 };
 int main(){
     DLL l1;
